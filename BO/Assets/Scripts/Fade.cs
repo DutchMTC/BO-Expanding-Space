@@ -19,7 +19,7 @@ public class Fade : MonoBehaviour
     public void onFadeComplete()
     {
         int index = getLevelAnimator.GetInteger("CharIndex");
-        SceneManager.LoadScene(index + 1);
+        SceneManager.LoadScene(index + 2);
     }
 
     private void Update()
