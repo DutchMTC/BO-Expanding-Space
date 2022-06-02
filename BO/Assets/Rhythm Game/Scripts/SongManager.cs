@@ -6,6 +6,7 @@ using Melanchall.DryWetMidi.Interaction;
 using System.IO;
 using UnityEngine.Networking;
 using System;
+using System.Threading;
 
 public class SongManager : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class SongManager : MonoBehaviour
     public float noteTime;
     public float noteSpawnY;
     public float noteTapY;
-    public int pause;
+    
     public float noteDespawnY
     {
         get
@@ -32,7 +33,9 @@ public class SongManager : MonoBehaviour
     }
 
     public static MidiFile midiFile;
+
     // Start is called before the first frame update
+    [Obsolete]
     void Start()
     {
         Instance = this;
@@ -44,7 +47,6 @@ public class SongManager : MonoBehaviour
         {
             ReadFromFile();
         }
-        test = 0;
     }
 
     [Obsolete]
@@ -96,19 +98,6 @@ public class SongManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            pause = 1;
-        }
-
-        if(pause == 0)
-        {
-            audioSource.UnPause();
-        }
-        else if(pause == 1)
-        {
-
-            audioSource.Pause();
-        }
+       
     }
 }

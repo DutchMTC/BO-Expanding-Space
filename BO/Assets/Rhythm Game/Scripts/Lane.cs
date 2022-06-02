@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Lane : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Lane : MonoBehaviour
     public GameObject notePrefab;
     List<Note> notes = new List<Note>();
     public List<double> timeStamps = new List<double>();
+    public int misses;
+    public Animator audioAnimator;
+    public Animator failAnimator;
 
     int spawnIndex = 0;
     int inputIndex = 0;
@@ -50,6 +54,7 @@ public class Lane : MonoBehaviour
             double timeStamp = timeStamps[inputIndex];
             double marginOfError = SongManager.Instance.marginOfError;
             double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 2000.0);
+            int misses = failAnimator.GetInteger("Misses");
 
             if (Input.GetKeyDown(input))
             {
@@ -68,12 +73,20 @@ public class Lane : MonoBehaviour
             if (timeStamp + marginOfError <= audioTime)
             {
                 Miss();
+                failAnimator.SetInteger("Misses", misses + 1);
+                Debug.Log(misses);
                 print($"Missed {inputIndex} note");
                 inputIndex++;
             }
-        }       
+        }
+
+        if (misses == 20)
+        {
+            audioAnimator.SetTrigger("PitchDown");
+        }
     
     }
+
     private void Hit()
     {
         ScoreManager.Hit();
