@@ -22,6 +22,7 @@ public class SongManager : MonoBehaviour
     public float noteTime;
     public float noteSpawnY;
     public float noteTapY;
+    public int pause;
     public float noteDespawnY
     {
         get
@@ -43,8 +44,10 @@ public class SongManager : MonoBehaviour
         {
             ReadFromFile();
         }
+        test = 0;
     }
 
+    [Obsolete]
     private IEnumerator ReadFromWebsite()
     {
         using (UnityWebRequest www = UnityWebRequest.Get(Application.streamingAssetsPath + "/" + fileLocation))
@@ -93,6 +96,19 @@ public class SongManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pause = 1;
+        }
+
+        if(pause == 0)
+        {
+            audioSource.UnPause();
+        }
+        else if(pause == 1)
+        {
+
+            audioSource.Pause();
+        }
     }
 }
