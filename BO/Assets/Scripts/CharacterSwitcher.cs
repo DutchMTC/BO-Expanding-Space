@@ -31,17 +31,17 @@ public class CharacterSwitcher : MonoBehaviour
         {
             animator.SetInteger("CharIndex", 0);
         }
-        else if(index > 1)
+        else if(index > 3)
         {
-            animator.SetInteger("CharIndex", 1);
+            animator.SetInteger("CharIndex", 3);
         }
 
         if(bgIndex < 0)
         {
             bgAnimator.SetInteger("BGIndex", 0);
-        }else if(bgIndex > 1)
+        }else if(bgIndex > 3)
         {
-            bgAnimator.SetInteger("BGIndex", 1);
+            bgAnimator.SetInteger("BGIndex", 3);
         }
     }
 }

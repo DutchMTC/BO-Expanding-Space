@@ -17,7 +17,6 @@ public class SongManager : MonoBehaviour
     public double marginOfError; // in seconds
 
     public int inputDelayInMilliseconds;
-    
 
     public string fileLocation;
     public float noteTime;

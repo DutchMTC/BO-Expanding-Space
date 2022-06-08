@@ -8,17 +8,17 @@ public class PauseButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void unPause()
+    public void Pause()
     {
-        pauseAnimator.SetTrigger("PitchUp");
+        pauseAnimator.SetTrigger("PitchDown");
     }
 }

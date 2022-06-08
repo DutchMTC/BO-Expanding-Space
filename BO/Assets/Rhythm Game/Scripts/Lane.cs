@@ -68,6 +68,7 @@ public class Lane : MonoBehaviour
                 else
                 {
                     print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                    failAnimator.SetInteger("Misses", misses + 1);
                 }
             }
             if (timeStamp + marginOfError <= audioTime)
@@ -80,7 +81,7 @@ public class Lane : MonoBehaviour
             }
         }
 
-        if (misses == 20)
+        if (misses >= 20)
         {
             audioAnimator.SetTrigger("PitchDown");
         }
