@@ -18,6 +18,6 @@ public class HealthBar : MonoBehaviour
     {
         int misses = animator.GetInteger("Misses");
 
-        slider.value = 1 - misses;
+        slider.value = 0 - misses;
     }
 }

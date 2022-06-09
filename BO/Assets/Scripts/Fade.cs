@@ -24,7 +24,7 @@ public class Fade : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
         {
             NextLevel();
         }

@@ -15,6 +15,12 @@ public class Lane : MonoBehaviour
     public int misses;
     public Animator audioAnimator;
     public Animator failAnimator;
+    public GameObject decentPrefab;
+    public GameObject nicePrefab;
+    public GameObject awesomePrefab;
+    public GameObject perfectPrefab;
+    public GameObject missPrefab;
+    public GameObject accuracyParent;
 
     int spawnIndex = 0;
     int inputIndex = 0;
@@ -65,27 +71,52 @@ public class Lane : MonoBehaviour
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
                 }
+            
                 else
                 {
                     print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                     failAnimator.SetInteger("Misses", misses + 1);
                 }
+
+                if (Math.Abs(audioTime - timeStamp) <= 0.12 && Math.Abs(audioTime - timeStamp) > 0.05)
+                {
+                    print("Decent!");
+                    GameObject nice = Instantiate(decentPrefab, new Vector3(270.3f, transform.position.y, transform.position.z), Quaternion.identity, accuracyParent.transform);
+
+                }
+                else if (Math.Abs(audioTime - timeStamp) <= 0.05 && Math.Abs(audioTime - timeStamp) > 0.03)
+                {
+                    print("Nice!");
+                    GameObject nice = Instantiate(nicePrefab, new Vector3(270.3f, transform.position.y, transform.position.z), Quaternion.identity, accuracyParent.transform);
+                }
+                else if (Math.Abs(audioTime - timeStamp) <= 0.03 && Math.Abs(audioTime - timeStamp) > 0.01)
+                {
+                    print("Awesome!");
+                    GameObject nice = Instantiate(awesomePrefab, new Vector3(270.3f, transform.position.y, transform.position.z), Quaternion.identity, accuracyParent.transform);
+
+                }
+                else if (Math.Abs(audioTime - timeStamp) <= 0.01)
+                {
+                    Hit();
+                    print("Perfect!");
+                    GameObject nice = Instantiate(perfectPrefab, new Vector3(270.3f, transform.position.y, transform.position.z), Quaternion.identity, accuracyParent.transform);
+                }
             }
             if (timeStamp + marginOfError <= audioTime)
             {
                 Miss();
+                GameObject nice = Instantiate(missPrefab, new Vector3(270.3f, transform.position.y, transform.position.z), Quaternion.identity, accuracyParent.transform);
                 failAnimator.SetInteger("Misses", misses + 1);
                 Debug.Log(misses);
                 print($"Missed {inputIndex} note");
                 inputIndex++;
             }
-        }
 
-        if (misses >= 20)
-        {
-            audioAnimator.SetTrigger("PitchDown");
+            if (misses >= 20)
+            {
+                audioAnimator.SetTrigger("PitchDownFailed");
+            }
         }
-    
     }
 
     private void Hit()
