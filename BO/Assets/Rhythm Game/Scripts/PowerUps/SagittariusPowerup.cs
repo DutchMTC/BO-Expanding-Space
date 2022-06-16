@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CapricornPowerup : MonoBehaviour
+public class SagittariusPowerup : MonoBehaviour
 {
     public Animator audioAnim;
     public Animator self;
@@ -18,9 +18,9 @@ public class CapricornPowerup : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift)) && canUse == true)
         {
-            audioAnim.SetTrigger("PowerUpCapricorn");
-            self.SetTrigger("UsePowerUp");
-            main.SetInteger("Misses", main.GetInteger("Misses") - 5);            
+            audioAnim.SetTrigger("PowerUpSagittarius");
+            self.SetTrigger("SagittariusText");
+            main.SetInteger("Misses", 0);            
             canUse = false;
         }
     }

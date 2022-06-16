@@ -15,7 +15,7 @@ public class AquariusPowerup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightShift) && canUse == true)
+        if ((Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift)) && canUse == true)
         {
             audioAnim.SetTrigger("PowerUpAquarius");
             self.SetTrigger("UsePowerUp");

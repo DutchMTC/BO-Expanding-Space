@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelComplete : MonoBehaviour
 {
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     public AudioSource audio;
     public Animator animator;
     public TMPro.TextMeshPro score;

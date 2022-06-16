@@ -9,6 +9,7 @@ public class Lane : MonoBehaviour
 {
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
     public KeyCode input;
+    public KeyCode secondaryInput;
     public GameObject notePrefab;
     List<Note> notes = new List<Note>();
     public List<double> timeStamps = new List<double>();
@@ -62,7 +63,7 @@ public class Lane : MonoBehaviour
             double audioTime = SongManager.GetAudioSourceTime() - (SongManager.Instance.inputDelayInMilliseconds / 2000.0);
             int misses = failAnimator.GetInteger("Misses");
 
-            if (Input.GetKeyDown(input))
+            if (Input.GetKeyDown(input) || Input.GetKeyDown(secondaryInput))
             {
                 if (Math.Abs(audioTime - timeStamp) < marginOfError)
                 {
