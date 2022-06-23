@@ -72,7 +72,6 @@ public class Lane : MonoBehaviour
                     Hit();
                     print($"Hit on {inputIndex} note");
                     ParticleSystem hit = Instantiate(hitParticle, new Vector3(notes[inputIndex].transform.position.x, notes[inputIndex].transform.position.y, notes[inputIndex].transform.position.z), Quaternion.identity, particleParent.transform);
-                    failAnimator.SetTrigger("HitBG");
                     Destroy(hit, 1f);
                     Destroy(notes[inputIndex].gameObject);
                     inputIndex++;
@@ -89,18 +88,21 @@ public class Lane : MonoBehaviour
                     print("Decent!");
                     GameObject nice = Instantiate(decentPrefab, new Vector3(270.3f, transform.position.y, transform.position.z), Quaternion.identity, accuracyParent.transform);
                     Destroy(nice, 1f);
+                    failAnimator.SetTrigger("HitBG");
                 }
                 else if (Math.Abs(audioTime - timeStamp) <= 0.05 && Math.Abs(audioTime - timeStamp) > 0.03)
                 {
                     print("Nice!");
                     GameObject nice = Instantiate(nicePrefab, new Vector3(270.3f, transform.position.y, transform.position.z), Quaternion.identity, accuracyParent.transform);
                     Destroy(nice, 1f);
+                    failAnimator.SetTrigger("HitBG");
                 }
                 else if (Math.Abs(audioTime - timeStamp) <= 0.03 && Math.Abs(audioTime - timeStamp) > 0.01)
                 {
                     print("Awesome!");
                     GameObject nice = Instantiate(awesomePrefab, new Vector3(270.3f, transform.position.y, transform.position.z), Quaternion.identity, accuracyParent.transform);
                     Destroy(nice, 1f);
+                    failAnimator.SetTrigger("HitBG");
                 }
                 else if (Math.Abs(audioTime - timeStamp) <= 0.01)
                 {
@@ -108,6 +110,7 @@ public class Lane : MonoBehaviour
                     print("Perfect!");
                     GameObject nice = Instantiate(perfectPrefab, new Vector3(270.3f, transform.position.y, transform.position.z), Quaternion.identity, accuracyParent.transform);
                     Destroy(nice, 1f);
+                    failAnimator.SetTrigger("HitBGPerfect");
                 }
             }
             if (timeStamp + marginOfError <= audioTime)
@@ -115,6 +118,7 @@ public class Lane : MonoBehaviour
                 Miss();
                 GameObject nice = Instantiate(missPrefab, new Vector3(270.3f, transform.position.y, transform.position.z), Quaternion.identity, accuracyParent.transform);
                 Destroy(nice, 1f);
+                failAnimator.SetTrigger("HitBGMiss");
                 failAnimator.SetInteger("Misses", misses + 1);
                 Debug.Log(misses);
                 print($"Missed {inputIndex} note");

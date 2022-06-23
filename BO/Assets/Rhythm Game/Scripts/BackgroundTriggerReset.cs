@@ -20,5 +20,7 @@ public class BackgroundTriggerReset : MonoBehaviour
     public void ResetBGTrigger()
     {
         main.ResetTrigger("HitBG");
+        main.ResetTrigger("HitBGMiss");
+        main.ResetTrigger("HitBGPerfect");
     }
 }
