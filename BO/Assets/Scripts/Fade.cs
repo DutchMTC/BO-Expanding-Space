@@ -10,6 +10,7 @@ public class Fade : MonoBehaviour
     public GameObject objectToFade;
     public Animator animator;
     public Animator getLevelAnimator;
+    public AudioSource sfx;
     // Start is called before the first frame update
     public void NextLevel()
     {
@@ -27,6 +28,7 @@ public class Fade : MonoBehaviour
         if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
         {
             NextLevel();
+            sfx.Play();
         }
     }
 
