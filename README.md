@@ -1,7 +1,5 @@
 # BO - Expanding Space
 
-<hr>
-
 StarSign is a Space related Rhythm Game designed for teenagers.
 Hit the notes on the beat of the song to gain points and try to get your perfect score!
 
